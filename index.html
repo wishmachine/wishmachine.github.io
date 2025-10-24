@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elin@</title>
+    
+    <meta name="description" content="Wish Machine.">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <div id="bg-particle-container"></div>
+
+    <main>
+        
+        <h1 id="main-question">What signal will you send into the void?</h1>
+        
+        <div id="waves-container">
+            </div>
+
+    </main>
+
+    <form id="wish-form" action="#">
+        <input 
+            type="text" 
+            id="wish-input" 
+            placeholder="Weave your words darling" 
+            autocomplete="off"
+            aria-label="Type your wish hoe"
+        >
+        <button type="submit" id="send-button">Send</button>
+    </form>
+
+    <div id="audio-player-container"></div>
+
+</body>
+</html>

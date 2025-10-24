@@ -1,0 +1,223 @@
+/* --- Global Reset & Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.6;
+}
+
+/* --- Background Particle Container --- */
+#bg-particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Places it behind all content */
+    pointer-events: none;
+}
+
+/* --- Main Content Layout --- */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Generous padding for content and to avoid the fixed input bar */
+    padding: 100px 20px 200px 20px;
+    width: 100%;
+}
+
+/* --- Main Question --- */
+#main-question {
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0.9;
+    letter-spacing: 1px;
+    /* Smooth fade-out transition */
+    transition: opacity 0.5s ease, height 0.5s ease, margin 0.5s ease;
+}
+
+/* Class added by JS to hide the question */
+#main-question.hidden {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* --- Waves Container --- */
+#waves-container {
+    display: flex;
+    /* Newest wishes appear on top */
+    flex-direction: column-reverse; 
+    gap: 60px;
+    margin-top: 40px;
+}
+
+/* --- Individual Wish/Wave Wrapper --- */
+.wave-wrapper {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wave-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* --- p5.js Wave Canvas --- */
+.wave-canvas {
+    width: 100%;
+    /* CRITICAL: Minimum height requirement */
+    height: 300px; 
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* --- Poem & Wish Text --- */
+.wave-poem {
+    font-size: 1.3rem;
+    font-style: italic;
+    text-align: center;
+    opacity: 0.85;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.wave-wish-text {
+    font-size: 1.1rem;
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 10px;
+    color: #b0b0b0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+}
+
+/* --- Fixed Input Form --- */
+#wish-form {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    /* Gradient backdrop to ensure text is readable */
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 70%, rgba(0,0,0,0) 100%);
+    z-index: 100;
+}
+
+#wish-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 1.3rem;
+    padding: 10px 5px;
+    width: 450px;
+    max-width: 70%;
+    font-family: Georgia, serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+    text-align: center;
+}
+
+#wish-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+#wish-input:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+#send-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 9px 22px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+}
+
+#send-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#send-button:active {
+    transform: scale(0.95);
+}
+
+/* --- Hidden Audio Player --- */
+#audio-player-container {
+    position: absolute;
+    opacity: 0;
+    top: -1000px;
+    left: -1000px;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* --- Responsive Design (Mobile) --- */
+@media (max-width: 768px) {
+    main {
+        /* Less padding on mobile */
+        padding: 60px 15px 150px 15px;
+    }
+
+    #main-question {
+        font-size: 1.8rem;
+    }
+
+    .wave-canvas {
+        /* CRITICAL: Mobile height requirement */
+        height: 250px;
+    }
+
+    .wave-poem {
+        font-size: 1.1rem;
+    }
+
+    .wave-wish-text {
+        font-size: 1.0rem;
+    }
+
+    #wish-form {
+        padding: 20px 15px;
+        gap: 10px;
+    }
+
+    #wish-input {
+        font-size: 1rem;
+        padding: 8px;
+        max-width: 65%;
+    }
+
+    #send-button {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
+}
